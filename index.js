@@ -305,3 +305,76 @@ bfs(graph, 'A')
 
 console.log('DFS:')
 dfs(graph, 'A')
+
+// Linked List
+// Create Node class
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
+
+// Create LinkedList class
+class LinkedList {
+  constructor() {
+    this.head = null
+    this.tail = null
+    this.length = 0
+  }
+
+  // Add a new node to the end of the list
+  push(value) {
+    const newNode = new Node(value)
+
+    if (!this.head) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.tail.next = newNode
+      this.tail = newNode
+    }
+
+    this.length++
+
+    return this
+  }
+
+  // Reverse the list
+  reverse() {
+    let current = this.head
+    let prev = null
+    let next
+
+    while (current) {
+      next = current.next
+      current.next = prev
+      prev = current
+      current = next
+    }
+
+    ;[this.head, this.tail] = [this.tail, this.head]
+
+    return this
+  }
+
+  // Print the list
+  print() {
+    let current = this.head
+    const values = []
+
+    for (let i = 0; i < this.length; i++) {
+      values.push(current.value)
+      current = current.next
+    }
+
+    console.log(values.join(' -> '))
+  }
+}
+
+// Example usage:
+const list = new LinkedList()
+list.push(1).push(2).push(3)
+list.print() // 1 -> 2 -> 3
+list.reverse()
+list.print() // 3 -> 2 -> 1
