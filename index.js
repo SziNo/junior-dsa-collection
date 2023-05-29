@@ -340,6 +340,19 @@ class LinkedList {
     return this
   }
 
+  hasCycle() {
+    let slow = this.head
+    let fast = this.head
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next
+      fast = fast.next.next
+      if (slow === fast) {
+        return true
+      }
+    }
+    return false
+  }
+
   // Reverse the list
   reverse() {
     let current = this.head
@@ -378,3 +391,5 @@ list.push(1).push(2).push(3)
 list.print() // 1 -> 2 -> 3
 list.reverse()
 list.print() // 3 -> 2 -> 1
+
+console.log(list.hasCycle())
